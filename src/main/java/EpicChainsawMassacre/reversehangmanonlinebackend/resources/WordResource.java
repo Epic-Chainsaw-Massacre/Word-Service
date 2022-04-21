@@ -2,14 +2,13 @@ package EpicChainsawMassacre.reversehangmanonlinebackend.resources;
 
 import EpicChainsawMassacre.reversehangmanonlinebackend.models.Word;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/word")
-public class wordResource {
+public class WordResource {
 
     @RequestMapping("/koeieuier")
     Word koeieuier() {
@@ -34,7 +33,7 @@ public class wordResource {
         }
     }
 
-    boolean wordExists(String word){
+    public boolean wordExists(String word){
             RestTemplate restTemplate = new RestTemplate();
             String jsonResult = restTemplate.getForObject("https://dictionaryapi.com/api/v3/references/sd2/json/" + word + "?key=4084046c-2911-430f-9666-a5ca6a3714b4", String.class);
             JSONArray json = new JSONArray(jsonResult);
