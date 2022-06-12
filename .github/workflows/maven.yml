@@ -22,7 +22,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build +Test with Maven
+    - name: Build & Test with Maven
       run: mvn clean install 
     - name: Docker Build & Push Action
       uses: mr-smithers-excellent/docker-build-push@v5.6
