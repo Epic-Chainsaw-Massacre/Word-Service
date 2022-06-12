@@ -27,7 +27,7 @@ jobs:
     - name: Docker Build & Push Action
       uses: mr-smithers-excellent/docker-build-push@v5.6
       with:
-        image: thomaspouwtcc/trickling-enigma
+        image: crossychainsaw/word-service
         tags: latest
         registry: docker.io
         dockerfile: Dockerfile
