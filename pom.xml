@@ -54,6 +54,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>Word-Service</finalName>
 	</build>
 
 </project>
