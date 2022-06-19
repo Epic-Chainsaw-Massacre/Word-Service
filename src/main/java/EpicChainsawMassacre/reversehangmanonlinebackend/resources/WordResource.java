@@ -60,7 +60,7 @@ public class WordResource {
 
     public boolean wordExists(String word){
             RestTemplate restTemplate = new RestTemplate();
-            String jsonResult = restTemplate.getForObject("https://dictionaryapi.com/api/v3/references/sd2/json/" + word + "?key=4084046c-2911-430f-9666-a5ca6a3714b4", String.class);
+            String jsonResult = restTemplate.getForObject("https://dictionaryapi.com/api/v3/references/sd2/json/" + word + System.getenv("API_KEY"), String.class);
             JSONArray json = new JSONArray(jsonResult);
             System.out.println("Result: " + jsonResult);
             String wordString;

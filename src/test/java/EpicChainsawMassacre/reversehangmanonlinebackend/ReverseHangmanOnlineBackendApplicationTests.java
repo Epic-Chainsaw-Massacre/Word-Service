@@ -6,6 +6,9 @@ import io.github.bucket4j.Bucket;
 import io.github.bucket4j.Bucket4j;
 import io.github.bucket4j.Refill;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Duration;
@@ -16,30 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @SpringBootTest
 class ReverseHangmanOnlineBackendApplicationTests {
 
-	@Test
-	void existingWord() {
+	@ParameterizedTest
+	@CsvSource({"help,true", "ksgujfudg,false"})
+	//@ValueSource(strings = {"help", "asgfkjas"}, booleans = {true, false})
+	void checkWordExistance(String word, Boolean exists) {
 		WordResource wordResource = new WordResource();
-		assertTrue(wordResource.wordExists("help"));
-	}
-
-	@Test
-	void notExistingWord() {
-		WordResource wordResource = new WordResource();
-		assertFalse(wordResource.wordExists("marc"));
-	}
-
-	@Test
-	void bucketTestfake() {
-		Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
-		Bandwidth limit = Bandwidth.classic(10, refill);
-		Bucket bucket = Bucket4j.builder()
-				.addLimit(limit)
-				.build();
-
-		for (int i = 1; i <= 10; i++) {
-			assertTrue(bucket.tryConsume(1));
-		}
-		assertFalse(bucket.tryConsume(1));
+		assertTrue(wordResource.wordExists(word) == exists);
 	}
 
 	@Test
